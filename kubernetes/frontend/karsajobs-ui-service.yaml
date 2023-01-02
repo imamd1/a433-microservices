@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: submission-bmam
+  name: karsa-ui
+  labels:
+    app: karsajobs-ui
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: karsajobs-ui
+    tier: frontend

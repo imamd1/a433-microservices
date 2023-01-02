@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  namespace: submission-bmam
+  name: karsa-be #name of manifest
+  labels:
+    app: karsajobs #label untuk mencocokkan antara deployment dan service
+spec:
+  selector:
+    matchLabels:
+      app: karsajobs
+  template:
+    metadata:
+      labels:
+        app: karsajobs
+    spec:
+      containers:
+      - name: karsa-be
+        image: ghcr.io/imamd1/karsajobs:latest #image dari GCR
+        ports:
+        - containerPort: 8080
+        env:
+          - name: APP_PORT #PORT yang digunakan / di EXPOSE ketika build Dockerfile
+            value: "8080"
+          - name: MONGO_HOST #Host yang diperoleh dari deployment mongodb
+            value: "mongo"
+          - name: MONGO_USER #User yang digunakan
+            valueFrom: # value diambil dari encrypted code di file mongo-secret yang telah di decode oleh k8s
+              secretKeyRef:
+                name: mongo-secret
+                key: MONGO_ROOT_USERNAME
+          - name: MONGO_PASS
+            valueFrom:  # value diambil dari file encrypted code di file mongo-secret yang telah di decode oleh k8s
+              secretKeyRef:
+                name: mongo-secret
+                key: MONGO_ROOT_PASSWORD

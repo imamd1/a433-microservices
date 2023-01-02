@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karsa-ui
+  labels:
+    app: karsajobs-ui
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: karsajobs-ui
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui
+        tier: frontend
+    spec:
+      containers:
+      - name: karsajobs-ui
+        image: ghcr.io/imamd1/karsajobs-ui:latest #image dari GCR
+        imagePullPolicy: IfNotPresent #akan melakukan pull jika image belum tersedia pada lokal
+        ports:
+          - containerPort: 8000 #port yang digunakan
+        env:
+          - name: VUE_APP_BACKEND #environment name yang digunakan untuk menghubungkan antara FE dan BE
+            value: http://192.168.49.2:32440 #http://<NODE_IP>:<NODE_PORT>

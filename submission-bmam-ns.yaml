@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: submission-bmam
+  labels:
+    app: webserver
+# namespace yang digunakan untuk menghubungkan seluruh resource pada submission ini

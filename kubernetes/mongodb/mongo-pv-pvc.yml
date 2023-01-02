@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: submission-bmam
+  name: mongo-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/db" #path dimana data akan disimpan
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: submission-bmam #namespace yang digunakan untuk memudahkan monitoring seluruh resource yang di deploy
+  name: mongo-pvc
+  labels:
+    app: mongo
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

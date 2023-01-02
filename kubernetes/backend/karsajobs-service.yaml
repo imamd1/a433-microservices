@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: submission-bmam
+  name: karsa-be
+  labels:
+    app: karsajobs
+spec:
+  selector:
+    app: karsajobs
+  type: NodePort #untuk memberikan Port yang nantinya akan digunakan untuk UI
+  ports:
+  - port: 8080
+    targetPort: 8080
