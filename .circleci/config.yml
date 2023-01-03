@@ -1,26 +1,27 @@
+# version of circleCI
 version: 2.1
 orbs: 
   docker: circleci/docker@2.2.0
-jobs:
-  lint-dockerfile:
-    executor: docker/machine
+jobs: #list of jobs configuration
+  lint-dockerfile: #name of job
+    executor: docker/machine #name of machine that will be use to execute this test
     steps:
       - checkout
-      - docker/dockerlint:
-          dockerfile: ./Dockerfile
-          treat-warnings-as-errors: true
+      - docker/dockerlint: #install dockerlint
+          dockerfile: ./Dockerfile # execution dockerfile in this folder
+          treat-warnings-as-errors: true # to make warning as an error 
   build-app-karsajobs-ui:
-    executor: docker/docker
+    executor: docker/docker  #using docker machine
     steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: build image
-          command: |
+      - checkout #checkout that
+      - setup_remote_docker #setup remote Docker engine to using docker command 
+      - run: #run step to build image
+          name: build image #name of step
+          command: | #command that use to build a docker image
             docker build -t ghcr.io/$uname/karsajobs-ui:latest .
-      - deploy:
+      - deploy: #stept to deploy / push image
           name: push github image
-          command: |
+          command: | #command that use to push image to GCR
             echo $PA_TOKEN | docker login ghcr.io -u $uname --password-stdin
             docker push ghcr.io/$uname/karsajobs-ui:latest
 workflows:
