@@ -1,39 +1,40 @@
+# version of circleCI
 version: 2.1
 orbs:
   docker: circleci/docker@2.2.0
-jobs:
-  lint-dockerfile:
-    executor: docker/machine
+jobs: #list of jobs configuration
+  lint-dockerfile: #name of job
+    executor: docker/machine #name of machine that will be use to execute this test
     steps:
       - checkout
-      - docker/dockerlint:
-          dockerfile: ./Dockerfile
-          treat-warnings-as-errors: true
-  test-app:
-    docker: 
-      - image: golang:bullseye
+      - docker/dockerlint: #install dockerlint
+          dockerfile: ./Dockerfile # execution dockerfile in this folder
+          treat-warnings-as-errors: true # to make warning as an error 
+  test-app: #name of job
+    docker: #using docker machine
+      - image: golang:bullseye #image of golang
     steps:
       - checkout
       - run:
-          name: run test
+          name: run test #name of run step
           command: go test -v -short --count=1 $(go list ./...)
-  build-app-karsajobs:
-    executor: docker/docker
+  build-app-karsajobs: #name of jobs
+    executor: docker/docker 
     steps:
       - checkout
-      - setup_remote_docker
-      - run:
-          name: build image
-          command: |
-            docker build -t ghcr.io/$uname/karsajobs:latest .
-      - deploy:
+      - setup_remote_docker #step that using to remote docker 
+      - run: #run step to build image
+          name: build image #name of step
+          command: | #command that use to build a docker image
+            docker build -t ghcr.io/$uname/karsajobs:latest . 
+      - deploy: #stept to deploy / push image
           name: push image
-          command: |
+          command: | #command that use to push image to GCR
             echo $PA_TOKEN | docker login ghcr.io -u $uname --password-stdin
             docker push ghcr.io/$uname/karsajobs:latest
-workflows:
-  version: 2
-  workflow:
+workflows: 
+  version: 2 
+  workflow:  #list of workflow
     jobs:
       - lint-dockerfile
       - test-app
