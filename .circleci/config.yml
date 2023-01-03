@@ -22,7 +22,7 @@ jobs: #list of jobs configuration
     executor: docker/docker 
     steps:
       - checkout
-      - setup_remote_docker #step that using to remote docker 
+      - setup_remote_docker #setup remote Docker engine to using docker command 
       - run: #run step to build image
           name: build image #name of step
           command: | #command that use to build a docker image
