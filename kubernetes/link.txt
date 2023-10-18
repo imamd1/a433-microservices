@@ -1,0 +1,2 @@
+ORDER-SERVICE PACKAGE = https://github.com/users/imamd1/packages/container/package/order-service
+SHIPPING-SERVICE PACKAGE = https://github.com/users/imamd1/packages/container/package/shipping-service

@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: order-gateway # gateway's name
+  namespace: submissions # for mark that this gateway for all service with submissions namespace
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService #kind of k8s objects
+metadata:
+  name: order-service #virtualservice's  name
+  namespace: submissions # for mark that this gateway for all service with submissions namespace
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - order-gateway # after gateway created, gw's used here
+  http:
+  - match:
+    - uri:
+        exact: /order # match url that wanna ingress
+    route:
+    - destination:
+        host: order-service #destination for ingress
+        port:
+          number: 3000 # port of order service

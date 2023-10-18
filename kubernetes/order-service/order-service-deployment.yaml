@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: submissions
+  name: order-service
+  labels:
+    app: e-commerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-commerce
+  template:
+    metadata:
+      labels:
+        app: e-commerce
+    spec:
+      containers:
+      - image: ghcr.io/imamd1/order-service:latest
+        name: order-service
+        ports:
+          - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: myrabbitmq
+                key: rabbitmq-password
+          - name: AMQP_URL
+            value: amqp://user:$(RABBITMQ_PASSWORD)@$(MYRABBITMQ_SERVICE_HOST):5672
