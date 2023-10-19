@@ -1,4 +1,6 @@
-FROM node:14.21-alpine as builder
+#initialize node image as a builder
+FROM node:14.21-alpine as builder 
+# set working dir
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
