@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: submission-bmam
-  name: mongo
+  namespace: submissions # for mark that this object will be group in this namespace
+  name: mongo #name of service
   labels:
     app: mongo
 spec:

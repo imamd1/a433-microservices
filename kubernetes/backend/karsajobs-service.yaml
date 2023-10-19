@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: submission-bmam
-  name: karsa-be
+  namespace: submissions # for mark that this object will be group in this namespace
+  name: karsa-be # name of service
   labels:
-    app: karsajobs
+    app: karsajobs # name of label
 spec:
   selector:
     app: karsajobs
-  type: NodePort #untuk memberikan Port yang nantinya akan digunakan untuk UI
+  type: NodePort #type of service expose
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 8080 # service's port
+    targetPort: 8080 #target port of image

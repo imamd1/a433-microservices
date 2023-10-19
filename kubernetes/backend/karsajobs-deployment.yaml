@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment #kind of k8s object
 metadata:
-  namespace: submission-bmam
+  namespace: submissions  # for mark that this object will be group in this namespace
   name: karsa-be #name of manifest
   labels:
     app: karsajobs #label untuk mencocokkan antara deployment dan service
@@ -15,7 +15,7 @@ spec:
         app: karsajobs
     spec:
       containers:
-      - name: karsa-be
+      - name: karsa-be #container's name
         image: ghcr.io/imamd1/karsajobs:latest #image dari GCR
         ports:
         - containerPort: 8080

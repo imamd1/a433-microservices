@@ -1,10 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: StatefulSet # kind of k8s object
 metadata:
-  namespace: submission-bmam
+  namespace: submissions # for mark that this object will be group in this namespace
   name: mongodb
 spec:
-  replicas: 1
+  replicas: 1 #num of replica
   selector:
     matchLabels:
       app: mongo

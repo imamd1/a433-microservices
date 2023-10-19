@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: submissions
+  namespace: submissions # for mark that this object will be group in this namespace
   name: order-service
   labels:
     app: e-commerce
@@ -16,17 +16,17 @@ spec:
         app: e-commerce
     spec:
       containers:
-      - image: ghcr.io/imamd1/order-service:latest
-        name: order-service
+      - image: ghcr.io/imamd1/order-service:latest # image of order-service
+        name: order-service #name of container
         ports:
-          - containerPort: 3000
+          - containerPort: 3000 #port of order-service container 
         env:
-          - name: PORT
+          - name: PORT #set env PORT of Application
             value: "3000"
-          - name: RABBITMQ_PASSWORD
+          - name: RABBITMQ_PASSWORD #set rabbitmq password env
             valueFrom:
-              secretKeyRef:
+              secretKeyRef: 
                 name: myrabbitmq
                 key: rabbitmq-password
           - name: AMQP_URL
-            value: amqp://user:$(RABBITMQ_PASSWORD)@$(MYRABBITMQ_SERVICE_HOST):5672
+            value: amqp://user:$(RABBITMQ_PASSWORD)@$(MYRABBITMQ_SERVICE_HOST):5672 #rabbitmq url, MYRABBITMQ_SERVICE_HOST gets after rabbitmq's service created

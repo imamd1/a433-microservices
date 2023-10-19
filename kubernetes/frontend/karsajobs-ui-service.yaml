@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: submission-bmam
-  name: karsa-ui
+  namespace: submissions # for mark that this object will be group in this namespace
+  name: karsa-ui #name of service
   labels:
     app: karsajobs-ui
 spec:
-  type: NodePort
+  type: NodePort #type of service expose
   ports:
-  - port: 8000
-    targetPort: 8000
+  - port: 8000 #define port of service
+    targetPort: 8000 #target port service
   selector:
     app: karsajobs-ui
     tier: frontend

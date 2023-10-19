@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  namespace: submission-bmam
+  namespace: submissions # for mark that this object will be group in this namespace
   name: mongo-pv
   labels:
     type: local
@@ -15,10 +15,10 @@ spec:
     path: "/data/db" #path dimana data akan disimpan
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolumeClaim #kind of k8s object
 metadata:
-  namespace: submission-bmam #namespace yang digunakan untuk memudahkan monitoring seluruh resource yang di deploy
-  name: mongo-pvc
+  namespace: submissions #namespace yang digunakan untuk memudahkan monitoring seluruh resource yang di deploy
+  name: mongo-pvc #name of PVC
   labels:
     app: mongo
 spec:
