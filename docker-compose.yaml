@@ -1,0 +1,25 @@
+#set version docker-compose
+# version: "3.7"
+services:
+  #name of container
+  item-app:
+    #define image that already pushed on ghcr
+    image: ghcr.io/imamd1/item-app:2
+    #define port to expose the app
+    ports: 
+      - 80:8080
+    #set this config for always restart container if broken
+    restart: always
+  #name of database container
+  item-db:
+    #define database image
+    image: mongo:3
+    #mount container to persistent-volume
+    volumes:
+      - app-db:/data/db
+    #set this config for always restart container if broken
+    restart: always
+
+#define the volume
+volumes:
+  app-db:
