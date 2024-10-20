@@ -1,6 +1,6 @@
 #initialize node image as a builder
 FROM node:14.21-alpine as builder 
-# set working dir
+#set working dir
 WORKDIR /app
 #copy all file package.json to current dir
 COPY package*.json ./
