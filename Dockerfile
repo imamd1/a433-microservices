@@ -8,8 +8,6 @@ WORKDIR /go/src/github.com/dicodingacademy/karsajobs
 ENV GO111MODULE=on
 #set app port of golang
 ENV APP_PORT=8080
-
-
 #copy file go.mod to current workdir
 COPY go.mod .
 #copy file go.sum to current workdir
