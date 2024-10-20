@@ -19,10 +19,10 @@ spec:
     spec:
       containers:
       - name: karsajobs-ui #container's name of karsajobs-ui
-        image: ghcr.io/imamd1/karsajobs-ui:latest #image dari GCR
+        image: ghcr.io/imamd1/karsajobs-ui:2 #image dari GCR
         imagePullPolicy: IfNotPresent #akan melakukan pull jika image belum tersedia pada lokal
         ports:
           - containerPort: 8000 #port yang digunakan
         env:
           - name: VUE_APP_BACKEND #environment name yang digunakan untuk menghubungkan antara FE dan BE
-            value: http://192.168.49.2:30863/ #http://<NODE_IP>:<NODE_PORT>
+            value: http://192.168.49.2:31151 #http://<NODE_IP>:<NODE_PORT>

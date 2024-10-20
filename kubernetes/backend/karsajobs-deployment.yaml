@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: karsa-be #container's name
-        image: ghcr.io/imamd1/karsajobs:latest #image dari GCR
+        image: ghcr.io/imamd1/karsajobs:2 #image dari GCR
         ports:
         - containerPort: 8080
         env:
