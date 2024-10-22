@@ -16,7 +16,7 @@ spec:
         app: e-commerce
     spec:
       containers:
-      - image: ghcr.io/imamd1/order-service:latest # image of order-service
+      - image: ghcr.io/imamd1/order-service:2 # image of order-service
         name: order-service #name of container
         ports:
           - containerPort: 3000 #port of order-service container 
