@@ -26,12 +26,12 @@ jobs: #list of jobs configuration
       - run: #run step to build image
           name: build image #name of step
           command: | #command that use to build a docker image
-            docker build -t ghcr.io/$uname/karsajobs:latest . 
+            docker build -t ghcr.io/$uname/karsajobs:3 . 
       - deploy: #stept to deploy / push image
           name: push image
           command: | #command that use to push image to GCR
             echo $PA_TOKEN | docker login ghcr.io -u $uname --password-stdin
-            docker push ghcr.io/$uname/karsajobs:latest
+            docker push ghcr.io/$uname/karsajobs:3
 workflows: 
   version: 2 
   workflow:  #list of workflow
