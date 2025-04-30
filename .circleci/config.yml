@@ -4,7 +4,7 @@ orbs:
   docker: circleci/docker@2.2.0
 jobs: #list of jobs configuration
   lint-dockerfile: #name of job
-    executor: docker/machine #name of machine that will be use to execute this test
+    executor: cimg/base:stable #name of machine that will be use to execute this test
     steps:
       - checkout
       - docker/dockerlint: #install dockerlint
