@@ -34,7 +34,7 @@ jobs: #list of jobs configuration
             docker push ghcr.io/$uname/karsajobs:3
 workflows: 
   version: 2 
-  workflow:  #list of workflow
+  karsajobs:  #list of workflow
     jobs:
       - lint-dockerfile
       - test-app
