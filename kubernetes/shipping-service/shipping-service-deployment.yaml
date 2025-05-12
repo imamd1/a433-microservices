@@ -16,7 +16,7 @@ spec:
         app: e-commerce
     spec:
       containers:
-      - image: ghcr.io/imamd1/shipping-service:latest # shipping-service image from Github packages
+      - image: ghcr.io/imamd1/shipping-service:2 # shipping-service image from Github packages
         name: shipping-service #name of container
         ports:
           - containerPort: 3001 #container's port
